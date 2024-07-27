@@ -1,11 +1,7 @@
 import css from "./Options.module.css";
 function Options({ updateFeedback, totalFeedback }) {
-  //   const updateFeedback = (feedbackType) => {
-  //     setFeedbackState(feedbackState.feedbackType + 1);
-  //   };
-
   return (
-    <div>
+    <div className={css.btnsWrap}>
       <button
         className={css.optionBtn}
         type="button"
@@ -37,18 +33,6 @@ function Options({ updateFeedback, totalFeedback }) {
         </button>
       )}
     </div>
-    // <ul className={css.optionList}>
-    //   <li className={css.optionItem}>
-    //     <button className={css.optionBtn}>Good</button>
-    //   </li>
-    //   <li className={css.optionItem}>
-    //     <button className={css.optionBtn}>Neutral</button>
-    //   </li>
-
-    //   <li className={css.optionItem}>
-    //     <button className={css.optionBtn}>Bad</button>
-    //   </li>
-    // </ul>
   );
 }
 export default Options;

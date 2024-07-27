@@ -1,6 +1,13 @@
-/* .optionList {
-}
-.optionItem {
+.btnsWrap {
+  display: flex;
+  gap: 8px;
 }
 .optionBtn {
-} */
+  min-width: 90px;
+  background-color: #ffcece;
+}
+.optionBtn:hover,
+.optionBtn:focus {
+  background-color: #f7a9a9;
+  outline: transparent;
+}

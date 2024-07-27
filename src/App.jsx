@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Description from "./components/Description/Description";
 import Feedback from "./components/Feedback/Feedback";
@@ -6,11 +6,19 @@ import Options from "./components/Options/Options";
 import Notification from "./components/Notification/Notification";
 
 function App() {
-  const [feedbackState, setFeedbackState] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [feedbackState, setFeedbackState] = useState(() => {
+    const feedbackStatistic = window.localStorage.getItem("feedbackStatistic");
+    return (
+      JSON.parse(feedbackStatistic) ?? {
+        good: 0,
+        neutral: 0,
+        bad: 0,
+      }
+    );
   });
+  useEffect(() => {
+    localStorage.setItem("feedbackStatistic", JSON.stringify(feedbackState));
+  }, [feedbackState]);
   const totalFeedback =
     feedbackState.good + feedbackState.neutral + feedbackState.bad;
   const positiveFeedback = Math.round(
@@ -31,7 +39,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="wrapper">
       <Description />
       <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} />
       {totalFeedback === 0 ? (
@@ -45,7 +53,7 @@ function App() {
           positiveFeedback={positiveFeedback}
         />
       )}
-    </>
+    </div>
   );
 }
 
